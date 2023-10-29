@@ -169,7 +169,7 @@ func (p *dnsOverHTTPS) Exchange(m *dns.Msg) (resp *dns.Msg, err error) {
 	// is necessary to make HTTP client usable.  We need to make 2 attempts in
 	// the case when the connection was closed (due to inactivity for example)
 	// AND the server refuses to open a 0-RTT connection.
-	for i := 0; isCached && p.shouldRetry(err) && i < 2; i++ {
+	for i := 0; isCached && p.shouldRetry(err) && i < 0; i++ {
 		client, err = p.resetClient(err)
 		if err != nil {
 			return nil, fmt.Errorf("failed to reset http client: %w", err)
